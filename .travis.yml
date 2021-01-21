@@ -9,11 +9,11 @@ before_install:
   - rvm use 2.3
   - gem install nokogiri -v 1.10.10
   - gem install hiptest-publisher
-  - "hiptest-publisher -c cucumber-js.conf --token=503191 --only=features,step_definitions --test-run-id=16534"
+  - "hiptest-publisher -c cucumber-js.conf --only=features,step_definitions --test-run-id=503191"
   - npm install
 
 script:
   - node_modules/.bin/cucumber-js --format=json | node_modules/cucumber-junit/bin/cucumber-junit --features-as-suites > junit_output.xml
 
 after_script:
-  - hiptest-publisher -c cucumber-js.conf --token=503191 --push=junit_output.xml --test-run-id=16534
+  - hiptest-publisher -c cucumber-js.conf --push=junit_output.xml --test-run-id=503191
